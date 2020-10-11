@@ -190,18 +190,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -2.16572 -0.57998 -0.01161  0.55218  2.41118 
+## -2.09747 -0.42784 -0.09664  0.65892  2.69844 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.13381    0.14504  -0.923    0.361    
-## lagged_Y     0.95407    0.05422  17.597   &lt;2e-16 ***
+## (Intercept) -0.19594    0.12899  -1.519    0.135    
+## lagged_Y     0.97277    0.03358  28.968   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.001 on 47 degrees of freedom
-## Multiple R-squared:  0.8682,	Adjusted R-squared:  0.8654 
-## F-statistic: 309.7 on 1 and 47 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 0.8859 on 47 degrees of freedom
+## Multiple R-squared:  0.947,	Adjusted R-squared:  0.9458 
+## F-statistic: 839.2 on 1 and 47 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Vi ser at vårt estimat av <span class="math inline">\(\phi\)</span>, som i regresjonutskriften er koeffisienten til <code>lagged_Y</code>, er i nærheten av den sanne verdien 0.95, men med så få observasjoner kan det godt hende at ditt estimat er noe forskjellig. Poenget er: vi kan bruke lineær regresjon til å estimere koeffisientene i en AR-modell basert på observasjoner.</p>
 <p>Som i forrige oppgave er pakken <code>forecast</code> svært nyttig for estimering og predikering:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(forecast)</a></code></pre></div>
@@ -212,11 +212,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Coefficients:
 ##          ar1     mean
-##       0.9358  -1.0679
-## s.e.  0.0456   1.7331
+##       0.9754  -0.8122
+## s.e.  0.0244   3.1674
 ## 
-## sigma^2 estimated as 0.9981:  log likelihood=-70.92
-## AIC=147.84   AICc=148.36   BIC=153.58</code></pre>
+## sigma^2 estimated as 0.8184:  log likelihood=-66.43
+## AIC=138.86   AICc=139.38   BIC=144.59</code></pre>
 <p>I første omgang kan vi legge merke til at vi har spesifisert <em>hvilken</em> modell vi ønsker å estimere gjennom argumentet <code>order = c(1, 0, 0)</code>, der ett-tallet angir AR-modellens orden <span class="math inline">\(p\)</span>, som i dette tilfellet er 1. Dersom du mistenker at AR(2)-modellen gir en bedre beskrivelse av tidsrekken din, kan du endre til <code>order = c(2, 0, 0)</code>. Vi kommer tilbake til spørsmålet om hvordan du i praksis kan velge den beste modellen for et gitt praktisk problem.</p>
 <p>Legg merke til at de to estimatene ikke er identiske selv om vi bruker det samme tidsrekken. Det er fordi <code>arima()</code>-funksjonen ikke bruker minste kvadraters metode til å regne ut estimatene (slik <code>lm()</code> gjør), men heller bruker en annen estimeringsteknikk som heter <em>maximum likelihood</em>.</p>
 <p><strong>3. Predikere.</strong> For predikering bruker vi funksjonen <code>forecast()</code>, som tar en estimert modell som input, og som bruker modellen til å skrive frem tidsrekken ved å estimere fremtidige verdier.</p>

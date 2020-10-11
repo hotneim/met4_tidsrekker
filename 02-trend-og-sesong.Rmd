@@ -1,5 +1,7 @@
 # Trend og sesong {#trend-og-sesong}
 
+<iframe src="https://player.vimeo.com/video/467126794" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
 ## Kontrollspørsmål
 
 1. Hvilke tre komponenter kan en tidsrekke typisk bestå av?
@@ -36,7 +38,7 @@ Vi så kan kjøre funksjonen slik:
 dekomponert <- stl(ausbeer, s.window = "periodic")
 ```
 
-Vi kan hente ut de ulike komponentene ved å bruke dollartegnet: `dekomponert$time.series`. Pakken `forecast` har en egen plotte funksjon `autoplot` som er spesialdesignet for tidsrekke objekter. Prøv å plotte de tre komponentene hver for seg ved å kjøre:
+Vi kan hente ut de ulike komponentene ved å bruke dollartegnet: `dekomponert$time.series`. Pakken `forecast` har en egen plottefunksjon, `autoplot` som er spesialdesignet for tidsrekkeobjekter. Prøv å plotte de tre komponentene hver for seg ved å kjøre:
 
 ```{r, fig.height=7}
 autoplot(dekomponert)
@@ -44,7 +46,7 @@ autoplot(dekomponert)
 
 **3. Predikere.** For predikering bruker vi funksjonen `forecast()`, som tar en estimert modell som input, og som bruker modellen til å skrive frem tidsrekken ved å estimere fremtidige verdier. Dekomponeringen over utgjør også en modell som vi kan bruke til å predikere fremtidige observasjoner med.  
 
-Kodesnutten under viser hvordan man predikerer $10$ tidssteg frem i tid ved å sette `h = 10` i funksjonen. I tillegg kan funksjonen regne ut prediksjonsintervall med en gitt dekningsgrad, her velger vi `level = 0.95` for $95\%$ prediksjonsintervall. Resultatet lagrer vi i objektet `prediksjon`. Dette objektet kan vi plotte ved bruk av `autoplot` funksjonen:
+Kodesnutten under viser hvordan man predikerer $10$ tidssteg frem i tid ved å sette `h = 10` i funksjonen. I tillegg kan funksjonen regne ut prediksjonsintervall med en gitt dekningsgrad, her velger vi `level = 0.95` for $95\%$ prediksjonsintervall. Resultatet lagrer vi i objektet `prediksjon`. Dette objektet kan vi plotte ved bruk av `autoplot`-funksjonen:
 
 ```{r}
 prediksjon <- forecast(dekomponert, h = 10, level = 0.95)
