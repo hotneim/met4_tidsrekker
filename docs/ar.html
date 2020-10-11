@@ -157,8 +157,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="ar" class="section level1">
 <h1><span class="header-section-number"> 3</span> AR(p)</h1>
-<iframe src="https://player.vimeo.com/video/467119445" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+<div style="padding:56.25% 0 0 0;position:relative;">
+<iframe src="https://vimeo.com/showcase/7661169/embed" allowfullscreen frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;">
 </iframe>
+</div>
 <div id="kontrollspørsmål" class="section level2">
 <h2><span class="header-section-number">3.1</span> Kontrollspørsmål</h2>
 <ol style="list-style-type: decimal">
@@ -191,19 +193,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## lm(formula = Y ~ lagged_Y, data = df)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.58107 -0.52836 -0.09462  0.58612  2.34892 
+##     Min      1Q  Median      3Q     Max 
+## -1.6887 -0.9039 -0.1254  0.7512  2.7603 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.36525    0.30462  -1.199    0.237    
-## lagged_Y     0.82938    0.09901   8.376 7.03e-11 ***
+## (Intercept)   0.6090     0.4834    1.26    0.214    
+## lagged_Y      0.8710     0.0828   10.52  6.1e-14 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.997 on 47 degrees of freedom
-## Multiple R-squared:  0.5989,	Adjusted R-squared:  0.5903 
-## F-statistic: 70.16 on 1 and 47 DF,  p-value: 7.028e-11</code></pre>
+## Residual standard error: 1.046 on 47 degrees of freedom
+## Multiple R-squared:  0.7019,	Adjusted R-squared:  0.6955 
+## F-statistic: 110.6 on 1 and 47 DF,  p-value: 6.099e-14</code></pre>
 <p>Vi ser at vårt estimat av <span class="math inline">\(\phi\)</span>, som i regresjonutskriften er koeffisienten til <code>lagged_Y</code>, er i nærheten av den sanne verdien 0.95, men med så få observasjoner kan det godt hende at ditt estimat er noe forskjellig. Poenget er: vi kan bruke lineær regresjon til å estimere koeffisientene i en AR-modell basert på observasjoner.</p>
 <p>Som i forrige oppgave er pakken <code>forecast</code> svært nyttig for estimering og predikering:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(forecast)</a></code></pre></div>
@@ -213,12 +215,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ARIMA(1,0,0) with non-zero mean 
 ## 
 ## Coefficients:
-##          ar1     mean
-##       0.8112  -2.4153
-## s.e.  0.0907   0.6821
+##          ar1    mean
+##       0.8584  5.2393
+## s.e.  0.0753  0.9243
 ## 
-## sigma^2 estimated as 0.9846:  log likelihood=-70.07
-## AIC=146.15   AICc=146.67   BIC=151.88</code></pre>
+## sigma^2 estimated as 1.091:  log likelihood=-72.77
+## AIC=151.55   AICc=152.07   BIC=157.28</code></pre>
 <p>I første omgang kan vi legge merke til at vi har spesifisert <em>hvilken</em> modell vi ønsker å estimere gjennom argumentet <code>order = c(1, 0, 0)</code>, der ett-tallet angir AR-modellens orden <span class="math inline">\(p\)</span>, som i dette tilfellet er 1. Dersom du mistenker at AR(2)-modellen gir en bedre beskrivelse av tidsrekken din, kan du endre til <code>order = c(2, 0, 0)</code>. Vi kommer tilbake til spørsmålet om hvordan du kan velge den beste modellen for et gitt praktisk problem.</p>
 <p>Legg merke til at de to estimatene ikke er identiske selv om vi bruker det samme tidsrekken. Det er fordi <code>arima()</code>-funksjonen ikke bruker minste kvadraters metode til å regne ut estimatene (slik <code>lm()</code> gjør), men heller bruker en annen estimeringsteknikk som heter <em>maximum likelihood</em>.</p>
 <p><strong>3. Predikere.</strong> For predikering bruker vi funksjonen <code>forecast()</code>, som tar en estimert modell som input, og som bruker modellen til å skrive frem tidsrekken ved å estimere fremtidige verdier.</p>
