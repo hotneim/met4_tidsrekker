@@ -1,12 +1,14 @@
 # AR(p) {#ar}
 
+<iframe src="https://player.vimeo.com/video/467119445" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
 ## Kontrollspørsmål
 
 1. Hva er definisjonen på en Hvit-støy-prosess?
 2. Hva er definisjonen på en AR(1)-prosess?
 3. Hvilken effekt har parameteren $\phi$ på egenskapene til en AR(1)-prosess?
 4. Hva er forskjellen på en AR(1)-prosess og en generell AR($p$)-prosess?
-<!-- 5. Hvorfor kan vi si at AR($p$) er en *utvidelse*/*generalisering* av hvit støy? -->
+5. Hvorfor kan vi si at AR($p$) er en *utvidelse*/*generalisering* av hvit støy?
 
 ## R-øving
 
@@ -17,7 +19,6 @@ n <- 50
 hvit_støy <- rnorm(n)
 plot(hvit_støy, type = "b")
 ```
-
 
 Vi kan bruke funksjonen `arima.sim()` til å simulere tidsrekker fra AR-modellen (og den mer generelle ARIMA-modellen, mer om det senere). Du kan for eksempel simulere $n$ observasjoner fra en AR(1)-prosess med $\phi = 0.95$ ved hjelp av følgende kommandoer:
 
@@ -56,7 +57,7 @@ Denne pakken inneholder en funskjon `Arima` for å estimere koeffisientene i en 
 ```{r}
 Arima(ar1, order = c(1, 0, 0))
 ```
-I første omgang kan vi legge merke til at vi har spesifisert *hvilken* modell vi ønsker å estimere gjennom argumentet `order = c(1, 0, 0)`, der ett-tallet angir AR-modellens orden $p$, som i dette tilfellet er 1. Dersom du mistenker at AR(2)-modellen gir en bedre beskrivelse av tidsrekken din, kan du endre til `order = c(2, 0, 0)`. Vi kommer tilbake til spørsmålet om hvordan du i praksis kan velge den beste modellen for et gitt praktisk problem.
+I første omgang kan vi legge merke til at vi har spesifisert *hvilken* modell vi ønsker å estimere gjennom argumentet `order = c(1, 0, 0)`, der ett-tallet angir AR-modellens orden $p$, som i dette tilfellet er 1. Dersom du mistenker at AR(2)-modellen gir en bedre beskrivelse av tidsrekken din, kan du endre til `order = c(2, 0, 0)`. Vi kommer tilbake til spørsmålet om hvordan du kan velge den beste modellen for et gitt praktisk problem.
 
 Legg merke til at de to estimatene ikke er identiske selv om vi bruker det samme tidsrekken. Det er fordi `arima()`-funksjonen ikke bruker minste kvadraters metode til å regne ut estimatene (slik `lm()` gjør), men heller bruker en annen estimeringsteknikk som heter *maximum likelihood*.
 
@@ -75,6 +76,5 @@ Vi kan plotte resultatet i en pen liten figur ved å bruke funksjonen `autoplot`
 # Plotter den opprinnerlige tidsrekken, sammen med prediksjon og
 # prediksjonsintervall
 autoplot(prediksjon)
-
 ```
 
