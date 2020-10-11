@@ -1,0 +1,22 @@
+--- 
+title: "MET4 - Modul 5 - Tidsrekker"
+author: "Håkon Otneim og Geir Drage Berentsen"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+description: "Dette er Modul 5 i MET4, gitt ved NHH Høsten 2020"
+---
+
+# Innledning {-}
+
+Vi er nå klare for den siste modulen i MET4, høst 2020, som handler om tidsrekker. Opplegget er ganske likt det vi har hatt så langt i semesteret, men siden læreboken behandler dette stoffet særs stemoderlig, har vi valgt å lage en litt annen variant.
+
+I motsetning til modul 1 til 4, der vi separerte teorivideoene og dataøvingene, er disse to elementene nå blandet sammen. Vi har delt stoffet opp i en serie overskrifter, der du finner videosnuttene fulgt av en guide til relevante R-funksjoner og noen oppgaver.
+
+Det er altså ikke en *egen* dataøvingsoppgave til tidsrekker. Hvis du jobber grundig med stoffet på disse sidene, enten alene eller i grupper, vil du få et godt grunnlag i et viktig tema innen statistikk for økonomifag, som går igjen i mange empiriske kurs senere i studiet.
+
+Faglærer og studentassistenter vil være tilgjengelig på vanlig måte for konsultasjon, diskusjon og problemløsning.
+
+Lykke til!
+
+-- *Håkon og Geir*
+

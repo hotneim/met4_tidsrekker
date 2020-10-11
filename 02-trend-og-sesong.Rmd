@@ -1,0 +1,53 @@
+# Trend og sesong {#trend-og-sesong}
+
+## Kontrollspørsmål
+
+1. Hvilke tre komponenter kan en tidsrekke typisk bestå av?
+
+## R-øving
+
+**1. Data.** I pakken `fpp` finnes en tidsrekke som heter `ausbeer`, som er den kvartalsvise produksjonen av øl i Australia fra 1956 til 2008. Du kan få tak i det og se på tidsrekken ved å kjøre følgende  kommandoer:
+
+```{r, eval = FALSE}
+install.packages("fpp")
+library(fpp)
+plot(ausbeer)
+```
+
+```{r,warning = FALSE, echo = FALSE, message = FALSE}
+library(fpp)
+plot(ausbeer)
+```
+
+Vi ser at det er en klar trendkomponent, selv om den ikke er lineær, samt en årlig sesongvariasjon.
+
+
+**2. Dekomponering.** Funksjonen `stl`  *dekomponerer* tidsrekken i de tre komponentene: trend, sesong, og tilfeldig variasjon. For å få tilgang på denne funskjonen trenger vi pakken `forecast`:
+
+
+```{r, eval = FALSE}
+install.packages("forecast")
+library(forecast)
+```
+
+Vi så kan kjøre funksjonen slik:
+
+```{r}
+dekomponert <- stl(ausbeer, s.window = "periodic")
+```
+
+Vi kan hente ut de ulike komponentene ved å bruke dollartegnet: `dekomponert$time.series`. Pakken `forecast` har en egen plotte funksjon `autoplot` som er spesialdesignet for tidsrekke objekter. Prøv å plotte de tre komponentene hver for seg ved å kjøre:
+
+```{r, fig.height=7}
+autoplot(dekomponert)
+```
+
+**3. Predikere.** For predikering bruker vi funksjonen `forecast()`, som tar en estimert modell som input, og som bruker modellen til å skrive frem tidsrekken ved å estimere fremtidige verdier. Dekomponeringen over utgjør også en modell som vi kan bruke til å predikere fremtidige observasjoner med.  
+
+Kodesnutten under viser hvordan man predikerer $10$ tidssteg frem i tid ved å sette `h = 10` i funksjonen. I tillegg kan funksjonen regne ut prediksjonsintervall med en gitt dekningsgrad, her velger vi `level = 0.95` for $95\%$ prediksjonsintervall. Resultatet lagrer vi i objektet `prediksjon`. Dette objektet kan vi plotte ved bruk av `autoplot` funksjonen:
+
+```{r}
+prediksjon <- forecast(dekomponert, h = 10, level = 0.95)
+autoplot(prediksjon)
+```
+

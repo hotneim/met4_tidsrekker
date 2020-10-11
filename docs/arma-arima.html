@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 7 ARMA og ARIMA | MET4 - Modul 5 - Tidsrekker</title>
+  <meta name="description" content="Dette er Modul 5 i MET4, gitt ved NHH Høsten 2020" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 7 ARMA og ARIMA | MET4 - Modul 5 - Tidsrekker" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dette er Modul 5 i MET4, gitt ved NHH Høsten 2020" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 7 ARMA og ARIMA | MET4 - Modul 5 - Tidsrekker" />
+  
+  <meta name="twitter:description" content="Dette er Modul 5 i MET4, gitt ved NHH Høsten 2020" />
+  
+
+<meta name="author" content="Håkon Otneim og Geir Drage Berentsen" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ma.html"/>
+<link rel="next" href="modellbygging.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modul 5 - Tidsrekker</a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Innledning</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduksjon til tidsrekker</a></li>
+<li class="chapter" data-level="2" data-path="trend-og-sesong.html"><a href="trend-og-sesong.html"><i class="fa fa-check"></i><b>2</b> Trend og sesong</a></li>
+<li class="chapter" data-level="3" data-path="ar.html"><a href="ar.html"><i class="fa fa-check"></i><b>3</b> AR(p)</a></li>
+<li class="chapter" data-level="4" data-path="stasjonaritet.html"><a href="stasjonaritet.html"><i class="fa fa-check"></i><b>4</b> Stasjonaritet</a></li>
+<li class="chapter" data-level="5" data-path="autokorrelasjon.html"><a href="autokorrelasjon.html"><i class="fa fa-check"></i><b>5</b> Autokorrelasjon</a></li>
+<li class="chapter" data-level="6" data-path="ma.html"><a href="ma.html"><i class="fa fa-check"></i><b>6</b> MA(q)</a></li>
+<li class="chapter" data-level="7" data-path="arma-arima.html"><a href="arma-arima.html"><i class="fa fa-check"></i><b>7</b> ARMA og ARIMA</a></li>
+<li class="chapter" data-level="8" data-path="modellbygging.html"><a href="modellbygging.html"><i class="fa fa-check"></i><b>8</b> Modellbygging</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MET4 - Modul 5 - Tidsrekker</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="arma-arima" class="section level1">
+<h1><span class="header-section-number"> 7</span> ARMA og ARIMA</h1>
+<div id="kontrollspørsmåldiskusjonsspørsmål" class="section level2">
+<h2><span class="header-section-number">7.1</span> Kontrollspørsmål/Diskusjonsspørsmål</h2>
+<ol style="list-style-type: decimal">
+<li>Hva er sammenhengen mellom AR-, MA-, og ARMA-modellene?</li>
+<li>Hva er en ARIMA-modell?</li>
+<li>Hvilken modell er dette: <span class="math display">\[y_t = \phi_1 y_{t-1} + \phi_2 y_{t-2} + \theta u_{t-1} + u_t\]</span></li>
+</ol>
+</div>
+<div id="r-øving" class="section level2">
+<h2><span class="header-section-number">7.2</span> R-øving</h2>
+<p><strong>1. Data</strong>
+Vi tar en ny titt på den daglige prisen på Eqinoraksjen over en 5-års periode som vi så på i introduksjonen til tidsrekker. Vi laster inn datasettet som før ved hjelp av <code>readxl</code>-pakken, og henter ut den aktuelle kolonnen. Legg merke til at vi bruker <code>rev()</code>-funksjonen til å reversere rekkefølgen til observasjonene slik at den første verdien komme først:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">equinor &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;equinor.xlsx&quot;</span>)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">pris &lt;-<span class="st"> </span><span class="kw">rev</span>(equinor<span class="op">$</span>Siste)</a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="kw">plot</span>(pris, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</a></code></pre></div>
+<p><img src="met4_tidsrekker_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p>Vi kan lage en figur av den differensierte tidsrekken på følgende måte:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co"># Sjekk av differanse </span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">diff_pris &lt;-<span class="st"> </span><span class="kw">diff</span>(pris)</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="kw">plot</span>(diff_pris, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</a></code></pre></div>
+<p><img src="met4_tidsrekker_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><strong>Oppgave:</strong> Vurder om en ARIMA modell er bedre egnet enn en ARMA modell ut fra de to figurene over.</p>
+<p><strong>2. Estimering av ARIMA modeller</strong>
+Vi bruker den samme funksjonen <code>Arima</code> fra <code>forecast</code> pakken til å estimere både ARMA og ARIMA modeller og spesifisering av modellen gjør vi via argumentet <code>order</code>. Skal du estimerer en ARMA(1,1) modell setter du f.eks dette argumentet til <code>c(1, 0, 1)</code>. Elementet i midten av denne vektoren spesifiserer hvor mange ganger tidsrekken skal differensieres i ARIMA modellen. Estimering av en ARIMA modell med en enkelt differensiering og ett MA og AR ledd kan gjøres slik:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">library</span>(forecast)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">arima111 &lt;-<span class="st"> </span><span class="kw">Arima</span>(pris, <span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span> , <span class="dv">1</span>))</a></code></pre></div>
+<p><strong>3. Hvordan skal vi velge p, d og q i en ARIMA(p,d,q) modell?</strong>
+Etter å ha tilpasset en ARIMA modell kan vi bruke modellen til å predikere de samme observasjonene vi har brukt til å tilpasse modellen. Vi kan så sammenligne hvor nær prediksjoner fra forskjellige modeller er de sanne dataene. Dette heter på godt norsk å gjøre en “in-sample” vurdering av modellen.</p>
+<p>Når du har tilpasset en modell, kan du ved å bruke <code>summary</code> funksjonen få opp flere mål på hvor god modellen er in-sample under fanen “Training set error measure”:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">summary</span>(arima111)</a></code></pre></div>
+<pre><code>## Series: pris 
+## ARIMA(1,1,1) 
+## 
+## Coefficients:
+##          ar1      ma1
+##       0.5121  -0.5780
+## s.e.  0.1680   0.1584
+## 
+## sigma^2 estimated as 6.614:  log likelihood=-2958.16
+## AIC=5922.32   AICc=5922.34   BIC=5937.72
+## 
+## Training set error measures:
+##                      ME     RMSE      MAE         MPE     MAPE      MASE
+## Training set 0.03973471 2.568719 1.949446 0.009091475 1.251353 0.9955157
+##                    ACF1
+## Training set 0.02035596</code></pre>
+<p>Her er f.eks <span class="math inline">\(RMSE = \sqrt{1/T\sum_{t = 1}^T (\hat{y}_t - y_t)^2}\)</span> et slags gjennomsnittlig avvik mellom prediksjonene og observasjonene. Litt lenger oppe i <code>summary</code> utskriften er det også en størrelse som heter AIC som måler hvor sannsynlig hver observasjon er gitt modelvalget ditt. Sammenligner du flere modeller er du på jakt etter den modellen som har minst RMSE og/eller AIC.</p>
+<p>Det krever en del arbeid skal du sammenligne mange ARIMA(p,d,q) modeller ettersom det er så mange måter å kombinere p,d og q på selv om du bestemmer en maksverdi for hver av dem. Det finnes heldigvis en veldig smart R funksjon kalt <code>auto.arima</code> som følger med pakken <code>forecast</code> som estimerer mange modeller og gir deg ut den modellen med minst AIC:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">arima_best_AIC &lt;-<span class="st"> </span><span class="kw">auto.arima</span>(pris)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">summary</span>(arima_best_AIC)</a></code></pre></div>
+<pre><code>## Series: pris 
+## ARIMA(0,1,2) 
+## 
+## Coefficients:
+##           ma1      ma2
+##       -0.0421  -0.0947
+## s.e.   0.0282   0.0281
+## 
+## sigma^2 estimated as 6.581:  log likelihood=-2955.04
+## AIC=5916.09   AICc=5916.1   BIC=5931.48
+## 
+## Training set error measures:
+##                     ME    RMSE      MAE         MPE     MAPE      MASE
+## Training set 0.0398931 2.56232 1.948444 0.009249629 1.249956 0.9950042
+##                      ACF1
+## Training set -0.001297121</code></pre>
+<p>Hva slags modell har <code>auto.arima</code> valgt her?</p>
+<p><strong>4. Prediksjon</strong>
+Prediksjon gjøres som tidligere med <code>forecast</code> funksjonen, så hvis en vil predikere 10 tidssteg frem i tid gjør man følgende:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">pred_arima111 &lt;-<span class="st"> </span><span class="kw">forecast</span>(arima111, <span class="dt">h =</span>  <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">autoplot</span>(pred_arima111, <span class="dt">include =</span> <span class="dv">100</span>)</a></code></pre></div>
+<p><img src="met4_tidsrekker_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>merk at i <code>autoplot</code> har vi valgt å bare vise 100 observasjoner av tidsrekken sammen med prediksjonene</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ma.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modellbygging.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

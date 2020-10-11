@@ -1,0 +1,7 @@
+bookdown::gitbook:
+  toc_depth: 1
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">Modul 5 - Tidsrekker</a></li>

@@ -1,0 +1,104 @@
+# Introduksjon til tidsrekker {#intro}
+
+## Kontrollspørsmål
+
+1. Hvilke forskjeller er det mellom en tidsrekke og et sett med samtidige observasjoner?
+2. Nevn noen typiske mønstre som vi kan se etter i en tidsrekke.
+3. Hvorfor er det nyttig å identifisere slike mønstre?
+4. Hvorfor kan det være nyttig å glatte en tidsrekke?
+5. Beskriv kort hvordan man regner ut et glidende gjennomsnitt.
+6. Hvorfor kan vi ikke bruke det glidende gjennomsnittet til å predikere neste observasjon i en tidsrekke?
+7. Beskriv kort hvordan eksponensiell glatting fungerer, og hvorfor denne teknikken kan brukes til prediksjon.
+
+## Oppgaver fra lærebok 
+
+**Keller: Statistics for Management and Economics, 11. utg**
+
+**a)** Regn ut et glidende gjennomsnitt med vindusstørrelse 3 for følgende tidsrekke:
+
+![](bilder/oppgave1.jpg){#id .class width=80% height=80%}
+
+**b)** Regn ut et glidende gjennomsnitt med vindusstørrelse 5 for tidsrekken over.
+
+**c)** Tegn inn tidsrekken over med de to glattingene inn i samme figur.
+
+\vspace{5mm}
+
+**d)** Regn ut eksponensiell glatting for tidsrekken under med glattefaktor $w = 0.1$:
+
+![](bilder/oppgave1b.jpg){#id .class width=80% height=80%}
+
+**e)** Gjenta oppgaven over med glattefaktor $w = 0.8$.
+
+**f)** Tegn tidsrekken over inn i samme figur som de to glattede versjonene. Ser det ut til å være en trend i denne tidsrekken?
+
+**bonusspørsmål)** Hva blir prediksjonen av $Y_{11}$ når du bruker modellen i henholdsvis oppgave d) og e)? 
+
+## R-øving
+
+Vi har lastet ned den daglige prisen på Eqinoraksjen over en 5-års periode fra Oslo Børs' hjemmeside. Vi laster inn datasettet som før ved hjelp av `readxl`-pakken, og henter ut den aktuelle kolonnen. Legg merke til at vi bruker `rev()`-funksjonen til å reversere rekkefølgen til observasjonene slik at den første verdien komme først:
+
+```{r, message = FALSE, warning = FALSE}
+library(readxl)
+equinor <- read_excel("equinor.xlsx")
+pris <- rev(equinor$Siste)                
+```
+
+Du kan så lage et raskt plott av tidsrekken:
+
+```{r, eval = FALSE}
+plot(pris, type = "l")
+```
+
+Både glidende gjennomsnitt og eksponensiell glatting har flere ulike implementeringer i R. For glidende gjennomsnitt skal vi bruke funksjonen `rollmean()` i pakken `zoo`. Du må først installere pakken og laste den inn;
+
+```{r, eval = FALSE}
+install.packages("zoo")
+library(zoo)
+```
+```{r, echo = FALSE, message = FALSE}
+library(zoo)
+```
+
+Hvis du leser litt på dokumentasjonen til `rollmean()` ved å kjøre `?rollmean` vil du se at du kan regne ut f.eks et glidende gjennomsnitt for Equinoraksjen med vindusstørrelse 5 ved å kjøre
+
+```{r}
+pris_glatt5 <- rollmean(pris, k = 5, fill = NA)
+```
+
+Da får vi ut en ny vektor med lik lengde som den vi hadde, og som inneholder den glattede versjonen. Den fyller opp verdiene i starten og slutten som vi ikke kan regne ut med et glidende gjennomsnitt med NA, slik at vi kan tegne inn den glattede versjonen i samme plott som vi viste selve tidsrekken:
+
+```{r, eval = FALSE}
+lines(pris_glatt5, col = "red")
+```
+
+Dersom du er interessert kan du lese her om hvordan det glidende gjennomsnittet blir brukt som en investeringsstrategi:
+
+[https://tradingsim.com/blog/simple-moving-average/]
+
+Tanken er at det glidende gjennomsnittet representerer den langsiktige trenden. Dersom tidrekken ligger under det glidende gjennomsnittet tolkes det som at aksjen er på vei nedover, og motsatt: dersom prisen ligger over det glidende gjennomsnittet, så er det et tegn på at aksjen er på vei oppover. Når de to seriene krysser hverandre går "alarmen", og man tar stilling til om man skal kjøpe eller selge. 
+
+Vindusstørrelsen velger man ut fra hvor hyppig man handler. For profesjonelle investorer som driver med handel i høy hastighet kan kanskje 5-dagersviduet som vi regnet ut over være nok. Andre med mellomlang og lang sikt vil gjerne bruke et vindu på 50 eller 200 dager.
+
+**Oppgave:** Regn ut et glidende gjennomsnitt med vindusstørrelse 200 for Equinoraksjen, og tegn det inn i figuren du har laget. Hjelper denne figuren deg til å lage en investeringsstrategi?
+
+Et problem med analysen over  er at vi trenger *fremtidige observasjoner* til å regne ut den glattede tidsrekken. Det betyr at vi kjenner den glattede versjonen av tidsrekken ved tid $t$ først ved tid $t+200$. Vi kan enkelt lage en annen variant der vi glatter tidsrekken ved tid $t$ ved å ta gjennomsnittet av $Y_{t-200}, Y_{t-199}, \ldots, Y_{t-1}$ i stedet for $Y_{t-100}, \ldots, Y_{t}, \ldots, Y_{t+100}$, altså at vi bare bruker fortiden. Det gjør du i R ved å legge til det ekstra argumentet `align = "right"` i funksjonen `rollmean`. Fordelen nå er at vi ved hvert tidspunkt kjenner både prisen på aksjen og den glattede varianten.
+
+**Oppgave:** Regn ut et glidende gjennomsnitt med vindusstørrelse 200 for Equinoraksjen som hele tiden bruker tidligere observasjoner i glattingen. Tegn glattingen inn i figuren. Hvordan ser investeringsstrategien din ut nå?
+
+**Eksponensiell glatting** har også et annet navn: Holt Winters Metode. En funksjon for å gjennomføre den finnes innebygget i R, og heter `HoltWinters()`. I denne funksjonen er vektparameteren $w$ representert ved argumentet `alpha`. Funksjonen har noen flere argumenter som ikke vi skal bruke, så dersom vi ønsker å regne ut den eksponensielle glattingen for Equinoraksjen med $w = 0.5$, kjører vi:
+
+```{r}
+pris_exp1 <- HoltWinters(pris, alpha = .5, beta = FALSE, gamma = FALSE)
+```
+
+For å hente ut den glattede versjonen skriver vi
+
+```{r, eval = FALSE}
+pris_exp1$fitted[,"xhat"]
+```
+
+**Oppgave:** Lag en ny figur der du tegner inn aksjeprisen, samt den eksponensielle glattingen med hhv. $w = 0.5$, $w = 0.01$ og $w = 0.99$.
+
+
+

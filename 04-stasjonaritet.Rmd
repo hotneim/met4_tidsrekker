@@ -1,0 +1,14 @@
+# Stasjonaritet {#stasjonaritet}
+
+## Kontrollspørsmål
+
+1. Hva er definisjonen på en stasjonær tidsrekke?
+2. Hva er poenget med å innføre stasjonaritet som et konsept i tidsrekkeanalyse?
+3. Er AR(1) prosessen $X_t = 1.5 X_{t - 1} + u_t$ stasjonær? 
+
+## Merk
+
+En AR-prosess kan vi definere også med et konstantledd $c$, f.eks: $Y_t = c + \phi Y_{t-1} + u_t$. Vi kan ikke forvente at alle tidsrekkene vi observerer i praksis vil ligge å variere rundt null (dvs at E$(Y_t) = 0$). Vi kan flytte den opp og ned ved å legge til den samme konstanten $c$ i hver tidssteg. I forrige oppgavesett, der vi estimerte parameteren $\phi$ i en AR(1)-modell, kom det (på samme måte som når vi gjør regresjon) ut et estimat av et `intercept`, som altså er denne $c$'en. I den simulerte tidsrekken vi jobbet med der, var det ikke noe konstantledd (altså, $c = 0$), som vi ser igjen i estimatene ved at de ikke er signifikant forskjellige fra null. Vi kunne tvunget estimeringsfunksjonene til å sette $c = 0$, f.eks ved å inkludere argumentet `include.mean = FALSE` i `arima()`-funksjonen.
+
+
+
