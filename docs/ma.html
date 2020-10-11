@@ -157,6 +157,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="ma" class="section level1">
 <h1><span class="header-section-number"> 6</span> MA(q)</h1>
+<iframe src="https://player.vimeo.com/video/467126617" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+</iframe>
 <div id="kontrollspørsmåldiskusjonsspørsmål" class="section level2">
 <h2><span class="header-section-number">6.1</span> Kontrollspørsmål/Diskusjonsspørsmål</h2>
 <ol style="list-style-type: decimal">
@@ -175,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb26-4" data-line-number="4"><span class="kw">plot</span>(ma1, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)                            <span class="co"># Lag et plott </span></a>
 <a class="sourceLine" id="cb26-5" data-line-number="5"><span class="kw">Arima</span>(ma1, <span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))                     <span class="co"># Estimer theta</span></a></code></pre></div>
 <p>Stemmer estimatet overens med den sanne <span class="math inline">\(\theta\)</span>? Sjekk ut dokumentasjonen <code>?Arima</code> og se hva du må gjøre for å spesifisere at modellen ikke har noe konstantledd <span class="math inline">\(c\)</span>. Prøv også å modifisere koden fra AR-oppgavene slik at du predikerer den simulerte MA(1)-tidsrekken 10 steg frem.</p>
-<p><strong>2. Analyse av global temperatur.</strong> La oss når ta for oss eksempelet fra videoen der vi ser på den globale månendlige gjennomsnittstemperaturen fra 1880 til 2016. Last ned <code>temp.csv</code> som ligger på denne modulen, og som er en CSV-fil som inneholder datasettet. Se på de første par radene:</p>
+<p><strong>2. Analyse av global temperatur.</strong> La oss når ta for oss eksempelet fra videoen der vi ser på den globale månendlige gjennomsnittstemperaturen fra 1880 til 2016. Last ned <a href="temp.csv">temp.csv</a>, som er en CSV-fil med datasettet. Se på de første par radene:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">temp &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;temp.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">head</span>(temp)</a></code></pre></div>
 <pre><code>##         Date    Mean
@@ -212,8 +214,7 @@ der <span class="math inline">\(\theta\)</span> er en ukjent parameter. Vi kan b
 <ul>
 <li>Prediker den differensierte temperaturrekken tre måneder frem i tid.</li>
 <li>Lag en figur der du plotter de 12 siste månedene i den observerte tidsrekken sammen med prediksjonene dine med prediksjonsintervaller.</li>
-<li><strong>Bonuspoeng 1:</strong> Bruk datokolonnen i det opprinnelige datasettet til å få datoer på <span class="math inline">\(x\)</span>-aksen.</li>
-<li><strong>Bonuspoeng 2:</strong> Husk at vi nå har predikert <em>forandringen</em> i den globale gjennomsnittstemperaturen fra måned til måned. Kan du heller lage en figur med selve temperaturserien og bruke prediksjonene dine til å heller plotte inn de tilhørende predikerte temperaturene?</li>
+<li><strong>Bonuspoeng:</strong> Husk at vi nå har predikert <em>forandringen</em> i den globale gjennomsnittstemperaturen fra måned til måned. Kan du heller lage en figur med selve temperaturserien og bruke prediksjonene dine til å heller plotte inn de tilhørende predikerte temperaturene?</li>
 <li>Pynt så figuren slik at du kan sende den fra deg.</li>
 </ul>
 

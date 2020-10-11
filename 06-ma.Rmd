@@ -1,5 +1,7 @@
 # MA(q) {#ma}
 
+<iframe src="https://player.vimeo.com/video/467126617" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
 ## Kontrollspørsmål/Diskusjonsspørsmål
 
 1. Hva er definisjonen på en MA(1)- og en MA($q$)-modell?
@@ -36,14 +38,14 @@ readr::read_csv("monthly_csv.csv") %>%
 ```
 
 
-**2. Analyse av global temperatur.** La oss når ta for oss eksempelet fra videoen der vi ser på den globale månendlige gjennomsnittstemperaturen fra 1880 til 2016. Last ned `temp.csv` som ligger på denne modulen, og som er en CSV-fil som inneholder datasettet. Se på de første par radene:
+**2. Analyse av global temperatur.** La oss når ta for oss eksempelet fra videoen der vi ser på den globale månendlige gjennomsnittstemperaturen fra 1880 til 2016. Last ned [temp.csv](temp.csv), som er en CSV-fil med datasettet. Se på de første par radene:
 
 ```{r}
 temp <- read.csv("temp.csv")
 head(temp)
 ```
-Første kolonne inneholder informasjon om tidspunkt, og temperaturen er inneholdt i andre kolonne. La oss plotte både temperaturrekken og den *differensierte* temperaturrekken (dvs. forskjellen fra dag til dag). Hvis vi avslører at den differensierte tidsrekken kan regnes ut ved å kjøre `difftemp <- diff(temp$Mean)`, skulle det nå være grei skuring å produsere følgende to enkle plott:
 
+Første kolonne inneholder informasjon om tidspunkt, og temperaturen er inneholdt i andre kolonne. La oss plotte både temperaturrekken og den *differensierte* temperaturrekken (dvs. forskjellen fra dag til dag). Hvis vi avslører at den differensierte tidsrekken kan regnes ut ved å kjøre `difftemp <- diff(temp$Mean)`, skulle det nå være grei skuring å produsere følgende to enkle plott:
 
 ```{r}
 difftemp <- diff(temp$Mean)
@@ -75,7 +77,6 @@ Hvis du har tid til slutt og vil ha litt ekstra trening kan du prøve deg på f�
 
 - Prediker den differensierte temperaturrekken tre måneder frem i tid.
 - Lag en figur der du plotter de 12 siste månedene i den observerte tidsrekken sammen med prediksjonene dine med prediksjonsintervaller.
-- **Bonuspoeng 1:** Bruk datokolonnen i det opprinnelige datasettet til å få datoer på $x$-aksen.
-- **Bonuspoeng 2:** Husk at vi nå har predikert *forandringen* i den globale gjennomsnittstemperaturen fra måned til måned. Kan du heller lage en figur med selve temperaturserien og bruke prediksjonene dine til å heller plotte inn de tilhørende predikerte temperaturene?
+- **Bonuspoeng:** Husk at vi nå har predikert *forandringen* i den globale gjennomsnittstemperaturen fra måned til måned. Kan du heller lage en figur med selve temperaturserien og bruke prediksjonene dine til å heller plotte inn de tilhørende predikerte temperaturene?
 - Pynt så figuren slik at du kan sende den fra deg.
 
