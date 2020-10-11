@@ -157,6 +157,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="arma-arima" class="section level1">
 <h1><span class="header-section-number"> 7</span> ARMA og ARIMA</h1>
+<div style="padding:56.25% 0 0 0;position:relative;">
+<iframe src="https://vimeo.com/showcase/7661207/embed" allowfullscreen frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+</iframe>
+</div>
 <div id="kontrollspørsmåldiskusjonsspørsmål" class="section level2">
 <h2><span class="header-section-number">7.1</span> Kontrollspørsmål/Diskusjonsspørsmål</h2>
 <ol style="list-style-type: decimal">
@@ -168,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-øving" class="section level2">
 <h2><span class="header-section-number">7.2</span> R-øving</h2>
 <p><strong>1. Data</strong>
-Vi tar en ny titt på den daglige prisen på Eqinoraksjen over en 5-års periode som vi så på i introduksjonen til tidsrekker. Vi laster inn datasettet som før ved hjelp av <code>readxl</code>-pakken, og henter ut den aktuelle kolonnen. Legg merke til at vi bruker <code>rev()</code>-funksjonen til å reversere rekkefølgen til observasjonene slik at den første verdien komme først:</p>
+Vi tar en ny titt på <a href="equinor.xlsx">den daglige prisen på Eqinoraksjen</a> over en 5-års periode som vi så på i introduksjonen til tidsrekker. Vi laster inn datasettet som før ved hjelp av <code>readxl</code>-pakken, og henter ut den aktuelle kolonnen. Legg merke til at vi bruker <code>rev()</code>-funksjonen til å reversere rekkefølgen til observasjonene slik at den første verdien komme først:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">library</span>(readxl)</a>
 <a class="sourceLine" id="cb33-2" data-line-number="2">equinor &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;equinor.xlsx&quot;</span>)</a>
 <a class="sourceLine" id="cb33-3" data-line-number="3">pris &lt;-<span class="st"> </span><span class="kw">rev</span>(equinor<span class="op">$</span>Siste)</a>

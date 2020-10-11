@@ -1,5 +1,7 @@
 # ARMA og ARIMA {#arma-arima}
 
+<div style='padding:56.25% 0 0 0;position:relative;'><iframe src='https://vimeo.com/showcase/7661207/embed' allowfullscreen frameborder='0' style='position:absolute;top:0;left:0;width:100%;height:100%;'></iframe></div>
+
 ## Kontrollspørsmål/Diskusjonsspørsmål
 
 1. Hva er sammenhengen mellom AR-, MA-, og ARMA-modellene?
@@ -9,7 +11,7 @@
 ## R-øving
 
 **1. Data**
-Vi tar en ny titt på den daglige prisen på Eqinoraksjen over en 5-års periode som vi så på i introduksjonen til tidsrekker. Vi laster inn datasettet som før ved hjelp av `readxl`-pakken, og henter ut den aktuelle kolonnen. Legg merke til at vi bruker `rev()`-funksjonen til å reversere rekkefølgen til observasjonene slik at den første verdien komme først:
+Vi tar en ny titt på [den daglige prisen på Eqinoraksjen](equinor.xlsx) over en 5-års periode som vi så på i introduksjonen til tidsrekker. Vi laster inn datasettet som før ved hjelp av `readxl`-pakken, og henter ut den aktuelle kolonnen. Legg merke til at vi bruker `rev()`-funksjonen til å reversere rekkefølgen til observasjonene slik at den første verdien komme først:
 ```{r}
 library(readxl)
 equinor <- read_excel("equinor.xlsx")
