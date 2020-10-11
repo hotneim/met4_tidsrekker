@@ -1,5 +1,7 @@
 # Introduksjon til tidsrekker {#intro}
 
+<div style='padding:75% 0 0 0;position:relative;'><iframe src='https://vimeo.com/showcase/7660844/embed' allowfullscreen frameborder='0' style='position:absolute;top:0;left:0;width:100%;height:100%;'></iframe></div>
+
 ## Kontrollspørsmål
 
 1. Hvilke forskjeller er det mellom en tidsrekke og et sett med samtidige observasjoner?
@@ -36,7 +38,7 @@
 
 ## R-øving
 
-Vi har lastet ned den daglige prisen på Eqinoraksjen over en 5-års periode fra Oslo Børs' hjemmeside. Vi laster inn datasettet som før ved hjelp av `readxl`-pakken, og henter ut den aktuelle kolonnen. Legg merke til at vi bruker `rev()`-funksjonen til å reversere rekkefølgen til observasjonene slik at den første verdien komme først:
+Vi har lastet [ned den daglige prisen på Eqinoraksjen](./equinor.xlsx) over en 5-års periode fra Oslo Børs' hjemmeside. Vi laster inn datasettet som før ved hjelp av `readxl`-pakken, og henter ut den aktuelle kolonnen. Legg merke til at vi bruker `rev()`-funksjonen til å reversere rekkefølgen til observasjonene slik at den første verdien komme først:
 
 ```{r, message = FALSE, warning = FALSE}
 library(readxl)
@@ -72,9 +74,7 @@ Da får vi ut en ny vektor med lik lengde som den vi hadde, og som inneholder de
 lines(pris_glatt5, col = "red")
 ```
 
-Dersom du er interessert kan du lese her om hvordan det glidende gjennomsnittet blir brukt som en investeringsstrategi:
-
-[https://tradingsim.com/blog/simple-moving-average/]
+Dersom du er interessert kan du lese mer [her](https://tradingsim.com/blog/simple-moving-average/) om hvordan det glidende gjennomsnittet blir brukt som en investeringsstrategi.
 
 Tanken er at det glidende gjennomsnittet representerer den langsiktige trenden. Dersom tidrekken ligger under det glidende gjennomsnittet tolkes det som at aksjen er på vei nedover, og motsatt: dersom prisen ligger over det glidende gjennomsnittet, så er det et tegn på at aksjen er på vei oppover. Når de to seriene krysser hverandre går "alarmen", og man tar stilling til om man skal kjøpe eller selge. 
 
