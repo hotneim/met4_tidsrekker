@@ -1,14 +1,14 @@
 # Autokorrelasjon {#autokorrelasjon}
 
+<iframe src="https://player.vimeo.com/video/467120768" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
 ## Kontrollspørsmål/Diskusjonsspørsmål
 
 1. Formuler med egne ord: Hva er autokorrelasjon?
 2. Hva kan vi lære ved å se på autokorrelasjonsplottet til en tidsrekke?
 3. Kan du komme på noe vi *ikke* kan finne ut av ved å se på korrelasjoneplottet til en tidsrekke?
-4. Gir det mening å snakke om autokorrelasjonsfunksjonen til en ikke-stasjonær tidsrekke?
 
 ## R-øving
-
 
 **1. Utregning av ACF** I R bruker vi funsksjonen `acf()` til å lage autokorrelasjonsplott. La oss i første omgang gjenskape noen av figurene fra videoen ved hjelp av simuleringer. For eksempel kan vi laget til to tidsrekker som på forrige oppgavesett, en hvit støy og en AR(1):
 
