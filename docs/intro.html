@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title> 1 Introduksjon til tidsrekker | MET4 - Modul 5 - Tidsrekker</title>
   <meta name="description" content="Dette er Modul 5 i MET4, gitt ved NHH Høsten 2020" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 1 Introduksjon til tidsrekker | MET4 - Modul 5 - Tidsrekker" />
   <meta property="og:type" content="book" />
@@ -32,6 +32,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="trend-og-sesong.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,28 +50,41 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQFE74907Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HQFE74907Y');
+</script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +93,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -155,13 +169,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
+<div id="intro" class="section level1" number="1">
 <h1><span class="header-section-number"> 1</span> Introduksjon til tidsrekker</h1>
 <div style="padding:75% 0 0 0;position:relative;">
 <iframe src="https://vimeo.com/showcase/7660844/embed" allowfullscreen frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;">
 </iframe>
 </div>
-<div id="kontrollspørsmål" class="section level2">
+<div id="kontrollspørsmål" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Kontrollspørsmål</h2>
 <ol style="list-style-type: decimal">
 <li>Hvilke forskjeller er det mellom en tidsrekke og et sett med samtidige observasjoner?</li>
@@ -173,45 +187,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Beskriv kort hvordan eksponensiell glatting fungerer, og hvorfor denne teknikken kan brukes til prediksjon.</li>
 </ol>
 </div>
-<div id="oppgaver-fra-lærebok" class="section level2">
+<div id="oppgaver-fra-lærebok" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Oppgaver fra lærebok</h2>
 <p><strong>Keller: Statistics for Management and Economics, 11. utg</strong></p>
 <p><strong>a)</strong> Regn ut et glidende gjennomsnitt med vindusstørrelse 3 for følgende tidsrekke:</p>
 <p><img src="bilder/oppgave1.JPG" id="id" class="class" style="width:80.0%;height:80.0%" /></p>
 <p><strong>b)</strong> Regn ut et glidende gjennomsnitt med vindusstørrelse 5 for tidsrekken over.</p>
 <p><strong>c)</strong> Tegn inn tidsrekken over med de to glattingene inn i samme figur.</p>
-
 <p><strong>d)</strong> Regn ut eksponensiell glatting for tidsrekken under med glattefaktor <span class="math inline">\(w = 0.1\)</span>:</p>
 <p><img src="bilder/oppgave1b.JPG" id="id" class="class" style="width:80.0%;height:80.0%" /></p>
 <p><strong>e)</strong> Gjenta oppgaven over med glattefaktor <span class="math inline">\(w = 0.8\)</span>.</p>
 <p><strong>f)</strong> Tegn tidsrekken over inn i samme figur som de to glattede versjonene. Ser det ut til å være en trend i denne tidsrekken?</p>
 <p><strong>bonusspørsmål)</strong> Hva blir prediksjonen av <span class="math inline">\(Y_{11}\)</span> når du bruker modellen i henholdsvis oppgave d) og e)?</p>
 </div>
-<div id="r-øving" class="section level2">
+<div id="r-øving" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> R-øving</h2>
 <p>Vi har lastet <a href="./equinor.xlsx">ned den daglige prisen på Eqinoraksjen</a> over en 5-års periode fra Oslo Børs’ hjemmeside. Vi laster inn datasettet som før ved hjelp av <code>readxl</code>-pakken, og henter ut den aktuelle kolonnen. Legg merke til at vi bruker <code>rev()</code>-funksjonen til å reversere rekkefølgen til observasjonene slik at den første verdien komme først:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">equinor &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;equinor.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">pris &lt;-<span class="st"> </span><span class="kw">rev</span>(equinor<span class="op">$</span>Siste)                </a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb1-2"><a href="intro.html#cb1-2"></a>equinor &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;equinor.xlsx&quot;</span>)</span>
+<span id="cb1-3"><a href="intro.html#cb1-3"></a>pris &lt;-<span class="st"> </span><span class="kw">rev</span>(equinor<span class="op">$</span>Siste)                </span></code></pre></div>
 <p>Du kan så lage et raskt plott av tidsrekken:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">plot</span>(pris, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a><span class="kw">plot</span>(pris, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
 <p>Både glidende gjennomsnitt og eksponensiell glatting har flere ulike implementeringer i R. For glidende gjennomsnitt skal vi bruke funksjonen <code>rollmean()</code> i pakken <code>zoo</code>. Du må først installere pakken og laste den inn;</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;zoo&quot;</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(zoo)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;zoo&quot;</span>)</span>
+<span id="cb3-2"><a href="intro.html#cb3-2"></a><span class="kw">library</span>(zoo)</span></code></pre></div>
 <p>Hvis du leser litt på dokumentasjonen til <code>rollmean()</code> ved å kjøre <code>?rollmean</code> vil du se at du kan regne ut f.eks et glidende gjennomsnitt for Equinoraksjen med vindusstørrelse 5 ved å kjøre</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pris_glatt5 &lt;-<span class="st"> </span><span class="kw">rollmean</span>(pris, <span class="dt">k =</span> <span class="dv">5</span>, <span class="dt">fill =</span> <span class="ot">NA</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1"></a>pris_glatt5 &lt;-<span class="st"> </span><span class="kw">rollmean</span>(pris, <span class="dt">k =</span> <span class="dv">5</span>, <span class="dt">fill =</span> <span class="ot">NA</span>)</span></code></pre></div>
 <p>Da får vi ut en ny vektor med lik lengde som den vi hadde, og som inneholder den glattede versjonen. Den fyller opp verdiene i starten og slutten som vi ikke kan regne ut med et glidende gjennomsnitt med NA, slik at vi kan tegne inn den glattede versjonen i samme plott som vi viste selve tidsrekken:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">lines</span>(pris_glatt5, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="kw">lines</span>(pris_glatt5, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p>Dersom du er interessert kan du lese mer <a href="https://tradingsim.com/blog/simple-moving-average/">her</a> om hvordan det glidende gjennomsnittet blir brukt som en investeringsstrategi.</p>
 <p>Tanken er at det glidende gjennomsnittet representerer den langsiktige trenden. Dersom tidrekken ligger under det glidende gjennomsnittet tolkes det som at aksjen er på vei nedover, og motsatt: dersom prisen ligger over det glidende gjennomsnittet, så er det et tegn på at aksjen er på vei oppover. Når de to seriene krysser hverandre går “alarmen”, og man tar stilling til om man skal kjøpe eller selge.</p>
 <p>Vindusstørrelsen velger man ut fra hvor hyppig man handler. For profesjonelle investorer som driver med handel i høy hastighet kan kanskje 5-dagersviduet som vi regnet ut over være nok. Andre med mellomlang og lang sikt vil gjerne bruke et vindu på 50 eller 200 dager.</p>
 <p><strong>Oppgave:</strong> Regn ut et glidende gjennomsnitt med vindusstørrelse 200 for Equinoraksjen, og tegn det inn i figuren du har laget. Hjelper denne figuren deg til å lage en investeringsstrategi?</p>
-<p>Et problem med analysen over er at vi trenger <em>fremtidige observasjoner</em> til å regne ut den glattede tidsrekken. Det betyr at vi kjenner den glattede versjonen av tidsrekken ved tid <span class="math inline">\(t\)</span> først ved tid <span class="math inline">\(t+200\)</span>. Vi kan enkelt lage en annen variant der vi glatter tidsrekken ved tid <span class="math inline">\(t\)</span> ved å ta gjennomsnittet av <span class="math inline">\(Y_{t-200}, Y_{t-199}, \ldots, Y_{t-1}\)</span> i stedet for <span class="math inline">\(Y_{t-100}, \ldots, Y_{t}, \ldots, Y_{t+100}\)</span>, altså at vi bare bruker fortiden. Det gjør du i R ved å legge til det ekstra argumentet <code>align = &quot;right&quot;</code> i funksjonen <code>rollmean</code>. Fordelen nå er at vi ved hvert tidspunkt kjenner både prisen på aksjen og den glattede varianten.</p>
+<p>Et problem med analysen over er at vi trenger <em>fremtidige observasjoner</em> til å regne ut den glattede tidsrekken. Det betyr at vi kjenner den glattede versjonen av tidsrekken ved tid <span class="math inline">\(t\)</span> først ved tid <span class="math inline">\(t+200\)</span>. Vi kan enkelt lage en annen variant der vi glatter tidsrekken ved tid <span class="math inline">\(t\)</span> ved å ta gjennomsnittet av <span class="math inline">\(Y_{t-200}, Y_{t-199}, \ldots, Y_{t-1}\)</span> i stedet for <span class="math inline">\(Y_{t-100}, \ldots, Y_{t}, \ldots, Y_{t+100}\)</span>, altså at vi bare bruker fortiden. Det gjør du i R ved å legge til det ekstra argumentet <code>align = "right"</code> i funksjonen <code>rollmean</code>. Fordelen nå er at vi ved hvert tidspunkt kjenner både prisen på aksjen og den glattede varianten.</p>
 <p><strong>Oppgave:</strong> Regn ut et glidende gjennomsnitt med vindusstørrelse 200 for Equinoraksjen som hele tiden bruker tidligere observasjoner i glattingen. Tegn glattingen inn i figuren. Hvordan ser investeringsstrategien din ut nå?</p>
 <p><strong>Eksponensiell glatting</strong> har også et annet navn: Holt Winters Metode. En funksjon for å gjennomføre den finnes innebygget i R, og heter <code>HoltWinters()</code>. I denne funksjonen er vektparameteren <span class="math inline">\(w\)</span> representert ved argumentet <code>alpha</code>. Funksjonen har noen flere argumenter som ikke vi skal bruke, så dersom vi ønsker å regne ut den eksponensielle glattingen for Equinoraksjen med <span class="math inline">\(w = 0.5\)</span>, kjører vi:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">pris_exp1 &lt;-<span class="st"> </span><span class="kw">HoltWinters</span>(pris, <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">beta =</span> <span class="ot">FALSE</span>, <span class="dt">gamma =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1"></a>pris_exp1 &lt;-<span class="st"> </span><span class="kw">HoltWinters</span>(pris, <span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">beta =</span> <span class="ot">FALSE</span>, <span class="dt">gamma =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>For å hente ut den glattede versjonen skriver vi</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">pris_exp1<span class="op">$</span>fitted[,<span class="st">&quot;xhat&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1"></a>pris_exp1<span class="op">$</span>fitted[,<span class="st">&quot;xhat&quot;</span>]</span></code></pre></div>
 <p><strong>Oppgave:</strong> Lag en ny figur der du tegner inn aksjeprisen, samt den eksponensielle glattingen med hhv. <span class="math inline">\(w = 0.5\)</span>, <span class="math inline">\(w = 0.01\)</span> og <span class="math inline">\(w = 0.99\)</span>.</p>
 
 </div>
