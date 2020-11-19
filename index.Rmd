@@ -2,10 +2,7 @@
 title: "MET4 - Modul 5 - Tidsrekker"
 author: "Håkon Otneim og Geir Drage Berentsen"
 site: bookdown::bookdown_site
-output: 
-  bookdown::gitbook:
-    includes:
-      in_header: google_analytics.html
+output: bookdown::gitbook
 description: "Dette er Modul 5 i MET4, gitt ved NHH Høsten 2020"
 ---
 
